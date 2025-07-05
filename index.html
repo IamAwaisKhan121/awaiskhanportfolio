@@ -1,0 +1,540 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Awais Khan | Full Stack Developer & QA</title>
+  <link rel="icon" href="favicon.ico" type="image/x-icon" />
+  <!-- Fonts & Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+  <style>
+    :root {
+      --dark-bg: #1A222B;
+      --dark-card: #2B3542;
+      --text-color: #E0E0E0;
+      --primary-color: #0dcaf0;
+      --light-bg: #f5f5f5;
+      --light-card: #ffffff;
+      --light-text: #111;
+      --nav-height: 70px;
+    }
+    
+    * { margin: 0; padding: 0; box-sizing: border-box; scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Poppins', sans-serif;
+      background-color: var(--dark-bg);
+      color: var(--text-color);
+      overflow-x: hidden;
+    }
+
+    body.light-mode { background-color: var(--light-bg); color: var(--light-text); }
+    
+    .section { max-width: 1200px; margin: auto; padding: 100px 20px; }
+    .section h2 { text-align: center; font-size: 2.5rem; margin-bottom: 60px; font-weight: 700; position: relative; }
+    .section h2::after {
+        content: ''; position: absolute; bottom: -15px; left: 50%;
+        transform: translateX(-50%); width: 80px; height: 4px;
+        background-color: var(--primary-color); border-radius: 2px;
+    }
+
+    /* Navbar */
+    nav {
+      position: fixed; top: 0; left: 0; width: 100%;
+      display: flex; justify-content: space-between; align-items: center;
+      background: rgba(26, 34, 43, 0.8); backdrop-filter: blur(10px);
+      padding: 0 8%; height: var(--nav-height); z-index: 1000;
+      box-shadow: 0 2px B10px rgba(0, 0, 0, 0.2);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+    }
+    .nav-brand { font-size: 1.6rem; font-weight: 700; color: var(--text-color); text-decoration: none; }
+    .nav-links { list-style: none; display: flex; gap: 35px; align-items: center; }
+    .nav-links li a, .nav-links li button {
+      color: var(--text-color); text-decoration: none; font-weight: 500;
+      background: none; border: none; cursor: pointer;
+      font-family: inherit; font-size: 1rem; transition: color 0.3s ease;
+    }
+    .hamburger { display: none; cursor: pointer; }
+    .hamburger div { width: 25px; height: 3px; background-color: var(--text-color); margin: 5px 0; transition: all 0.3s ease-in-out;}
+    body.light-mode nav { background: rgba(255, 255, 255, 0.8); border-bottom: 1px solid rgba(0, 0, 0, 0.1); }
+    body.light-mode .nav-brand, body.light-mode .nav-links li a, body.light-mode .nav-links li button { color: var(--light-text); }
+    body.light-mode .hamburger div { background-color: var(--light-text); }
+    .nav-links li a:hover, .nav-links li button:hover { color: var(--primary-color); }
+    .nav-links li button i { font-size: 1.2rem; }
+
+    /* Hero Section */
+    .hero { min-height: 100vh; display: flex; align-items: center; justify-content: space-between; padding: var(--nav-height) 8% 0; flex-wrap: wrap; gap: 2rem; }
+    .hero-content { flex: 1; max-width: 600px; text-align: left; z-index: 2; }
+    .hero-image-container { flex: 1; display: flex; justify-content: center; align-items: center; max-width: 400px; z-index: 1;}
+    .hero-image-container img { width: 80%; height: auto; border-radius: 50%; border: 7px solid var(--dark-card); box-shadow: 0 0 20px rgba(0,0,0,0.3);}
+    .hero h1 { font-size: 3.5rem; font-weight: 700; }
+    .hero #typewriter { font-size: 1.8rem; margin-top: 10px; color: var(--primary-color); min-height: 2.8rem; font-weight: 600;}
+    .hero-summary { margin-top: 20px; font-size: 1.05rem; line-height: 1.7; color: #b0b0b0; max-width: 550px;}
+    body.light-mode .hero-summary { color: #555; }
+    .contact-buttons { margin-top: 30px; display: flex; gap: 15px; flex-wrap: wrap; }
+    .contact-buttons a {
+        padding: 12px 28px; text-decoration: none; border: 2px solid var(--primary-color); border-radius: 50px;
+        color: var(--primary-color); font-weight: 600; transition: all 0.3s ease;
+    }
+    .contact-buttons a:hover { background-color: var(--primary-color); color: #111; box-shadow: 0 0 15px var(--primary-color); }
+    
+    /* Reusable Card Styles */
+    .about-card, .experience-item, .contact-box, .project-card {
+        background: var(--dark-card); border-radius: 15px;
+        box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4); transition: transform 0.3s ease;
+    }
+    body.light-mode .about-card, body.light-mode .experience-item, body.light-mode .contact-box, body.light-mode .project-card { background: var(--light-card); }
+    
+    .about-card { padding: 40px; }
+    .about-card ul { list-style-type: none; }
+    .about-card ul li { margin-bottom: 15px; line-height: 1.7; position: relative; padding-left: 30px; }
+    .about-card ul li::before { content: "\f058"; font-family: "Font Awesome 6 Free"; font-weight: 900; color: var(--primary-color); position: absolute; left: 0; font-size: 1.2rem;}
+
+    /* Skills */
+    .skills-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(100px, 1fr)); gap: 30px; margin-top: 40px;}
+    .skill-item { text-align: center; }
+    .skill-item i { font-size: 4rem; color: var(--primary-color); transition: transform 0.3s ease, text-shadow 0.3s ease; }
+    .skill-item:hover i { transform: scale(1.1); text-shadow: 0 0 15px var(--primary-color); }
+    .skill-item p { margin-top: 10px; font-weight: 500; }
+    
+    /* Experience */
+    .experience-timeline { display: flex; flex-direction: column; gap: 40px; margin-top: 50px; }
+    .experience-item { padding: 30px; border-left: 5px solid var(--primary-color); }
+    .exp-header { display: flex; justify-content: space-between; align-items: flex-start; flex-wrap: wrap; gap: 10px; }
+    .exp-header h3 { font-size: 1.5rem; }
+    .exp-header span { font-style: italic; color: #aaa; }
+    body.light-mode .exp-header span { color: #666; }
+    .exp-role { font-size: 1.1rem; color: var(--primary-color); font-weight: 600; margin: 5px 0 15px; }
+    .exp-details { list-style-position: inside; padding-left: 5px; }
+    .exp-details li { margin-bottom: 10px; line-height: 1.6; }
+    .exp-tags, .project-tags { margin-top: 20px; display: flex; flex-wrap: wrap; gap: 10px; }
+    .exp-tags span, .project-tags span { background: #3c4a5a; padding: 5px 12px; border-radius: 20px; font-size: 0.9rem; }
+    body.light-mode .exp-tags span, body.light-mode .project-tags span { background: #e9e9e9; }
+
+    /* Projects */
+    .projects-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: 30px; }
+    .project-card { overflow: hidden; display: flex; flex-direction: column; }
+    .project-card:hover { transform: translateY(-5px); box-shadow: 0 8px 30px rgba(0,0,0,0.6); }
+    .project-image-placeholder { background-color: #3c4a5a; height: 200px; display: flex; justify-content: center; align-items: center; color: #777; font-size: 1.2rem; overflow: hidden;}
+    body.light-mode .project-image-placeholder { background-color: #e0e0e0; }
+    .project-image-placeholder img { width: 100%; height: 100%; object-fit: cover; }
+    .project-content { padding: 25px; flex-grow: 1; display: flex; flex-direction: column;}
+    .project-content h3 { font-size: 1.4rem; color: var(--text-color); }
+    body.light-mode .project-content h3 { color: var(--light-text); }
+    .project-content .project-company { font-weight: 400; font-size: 1rem; color: #aaa; margin-bottom: 15px; }
+    body.light-mode .project-content .project-company { color: #666; }
+    .project-content .project-description { font-size: 1rem; line-height: 1.6; margin-bottom: 15px; }
+    .project-content .project-tags { margin-top: auto; padding-top: 15px; }
+    .project-link { display: inline-block; margin-top: 20px; padding: 10px 18px; background: var(--primary-color); color: #111; text-decoration: none; border-radius: 5px; font-weight: 600; text-align: center; transition: all 0.3s ease; }
+    .project-link:hover { background-color: #0bb1d2; box-shadow: 0 0 10px var(--primary-color); }
+    
+    /* Contact & Footer */
+    .contact-box { padding: 40px; text-align: center; }
+    .contact-info { margin: 20px 0; font-size: 1.2rem; }
+    
+    /* Helpers */
+    .social-bar { position: fixed; top: 50%; left: 30px; transform: translateY(-50%); display: flex; flex-direction: column; gap: 20px; z-index: 500;}
+    .social-bar a { color: #aaa; font-size: 1.5rem; transition: 0.3s; }
+    .social-bar a:hover { color: var(--primary-color); transform: scale(1.15); }
+    body.light-mode .social-bar a { color: #333; }
+    .scroll-top {
+        display: none; position: fixed; right: 20px; bottom: 20px; background: var(--primary-color); color: var(--dark-bg);
+        width: 45px; height: 45px; border-radius: 50%; z-index: 999; cursor: pointer; font-size: 1.2rem;
+        align-items: center; justify-content: center; transition: all 0.3s ease;
+    }
+    .scroll-top:hover { background-color: #0bb1d2; transform: translateY(-5px); }
+
+    /* ----- MEDIA QUERIES FOR FULL RESPONSIVENESS ----- */
+    
+    /* For Large Desktops (e.g., 1440p screens and up) */
+    @media screen and (min-width: 1440px) {
+        .section { max-width: 1320px; }
+        .hero h1 { font-size: 4rem; }
+        .hero #typewriter { font-size: 2rem; }
+    }
+    
+    /* For Small Laptops / Desktops */
+    @media screen and (max-width: 1200px) {
+        .section { padding-left: 4%; padding-right: 4%;}
+    }
+
+    /* For Tablets & Ipads */
+    @media screen and (max-width: 992px) {
+        .hero {
+            flex-direction: column-reverse; justify-content: center; text-align: center;
+            padding-top: 120px; min-height: auto; padding-bottom: 60px;
+        }
+        .hero-content { max-width: 100%; text-align: center; }
+        .hero-summary { margin-left: auto; margin-right: auto; }
+        .contact-buttons { justify-content: center; }
+        .hero-image-container img { width: 50%; max-width: 220px; margin-bottom: 2rem;}
+    }
+
+    /* Mobile Nav Activation & Smaller Tablets */
+    @media screen and (max-width: 768px) {
+        .section { padding: 80px 20px; }
+        .section h2 { font-size: 2.1rem; margin-bottom: 50px;}
+        .hero h1 { font-size: 2.8rem; }
+        .hero #typewriter { font-size: 1.5rem; }
+
+        .social-bar { display: none; } 
+
+        .nav-links {
+            position: fixed; right: -100%; top: var(--nav-height); background: var(--dark-card);
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            gap: 2rem; width: 75%; height: calc(100vh - var(--nav-height));
+            transition: right 0.5s cubic-bezier(0.68, -0.55, 0.27, 1.55); /* "Spring" animation */
+            box-shadow: -5px 0px 15px rgba(0, 0, 0, 0.2);
+        }
+        body.light-mode .nav-links { background: var(--light-card); }
+        .nav-links li { opacity: 0; transform: translateX(50px); }
+        .hamburger { display: block; z-index: 1001;}
+
+        .nav-active { right: 0; }
+        .nav-active li {
+            opacity: 1; transform: translateX(0);
+            transition: opacity 0.4s ease, transform 0.4s ease;
+        }
+        .nav-active li:nth-child(1) { transition-delay: 0.1s; }
+        .nav-active li:nth-child(2) { transition-delay: 0.2s; }
+        .nav-active li:nth-child(3) { transition-delay: 0.3s; }
+        .nav-active li:nth-child(4) { transition-delay: 0.4s; }
+        .nav-active li:nth-child(5) { transition-delay: 0.5s; }
+        .nav-active li:nth-child(6) { transition-delay: 0.6s; }
+
+        .toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
+        .toggle .line2 { opacity: 0; }
+        .toggle .line3 { transform: rotate(45deg) translate(-5px, -6px); }
+    }
+    
+    /* Small Mobile Phones */
+    @media screen and (max-width: 480px) {
+        :root { --nav-height: 65px; }
+        .section { padding: 60px 15px; }
+        .hero { padding-top: 100px; }
+        .hero h1 { font-size: 2.2rem; }
+        .hero #typewriter { font-size: 1.2rem; min-height: 3.5rem; /* Allow space for longer text wrap */}
+        .hero-summary { font-size: 0.95rem; }
+        .contact-buttons a { padding: 10px 20px; font-size: 0.9rem; }
+        .projects-grid { grid-template-columns: 1fr; gap: 25px; }
+        .about-card, .experience-item, .contact-box { padding: 25px; }
+        .exp-header { flex-direction: column; align-items: flex-start; }
+        .exp-header h3 { font-size: 1.25rem; }
+        .exp-role { font-size: 1rem; }
+    }
+
+    /* Extra Small Devices */
+    @media screen and (max-width: 360px) {
+        .section h2 { font-size: 1.8rem; }
+        .hero h1 { font-size: 2rem; }
+        .hero #typewriter { font-size: 1.1rem; }
+        .contact-info p { font-size: 1rem; word-break: break-all; }
+        .nav-brand { font-size: 1.3rem;}
+    }
+  </style>
+</head>
+<body>
+  <!-- Navbar -->
+  <nav>
+    <a href="#home" class="nav-brand">Awais Khan</a>
+    <ul class="nav-links">
+      <li><a href="#about">About</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><button onclick="toggleTheme()" aria-label="Toggle Theme"><i id="theme-toggle-icon" class="fas fa-moon"></i></button></li>
+    </ul>
+    <div class="hamburger">
+        <div class="line1"></div>
+        <div class="line2"></div>
+        <div class="line3"></div>
+    </div>
+  </nav>
+
+  <!-- Social Icons -->
+  <div class="social-bar">
+    <a href="https://www.linkedin.com/in/awais-khan-b1075931b" target="_blank" aria-label="LinkedIn"><i class="fab fa-linkedin"></i></a>
+    <a href="https://github.com/IamAwaisKhan121" target="_blank" aria-label="GitHub"><i class="fab fa-github"></i></a>
+  </div>
+  
+  <!-- Hero Section -->
+  <section class="hero" id="home">
+    <div class="hero-content">
+      <h1>Awais Khan</h1>
+      <p id="typewriter"></p>
+      <p class="hero-summary">A results-oriented Full Stack Developer with 4+ years of experience crafting scalable, high-performance software solutions. Passionate about clean architecture, continuous learning, and driving business results through technology.</p>
+      <div class="contact-buttons">
+          <a href="#contact">Get In Touch</a>
+          <a href="https://drive.google.com/file/d/1oL5OYlRvCJDMEyyVosH5msunl2yzTU5E/view?usp=sharing" target="_blank">View Resume</a>
+      </div>
+    </div>
+    <div class="hero-image-container">
+      <img src="awaiskhan.png" alt="A photo of Awais Khan in a professional setting.">
+    </div>
+  </section>
+
+  <!-- About Me Section -->
+  <section class="section" id="about">
+    <h2>About Me</h2>
+    <div class="about-card">
+        <ul>
+            <li><strong>Versatile Full-Stack Developer</strong> with over 4 years of hands-on experience in the entire software development lifecycle, from concept and architecture to deployment and digital strategy.</li>
+            <li><strong>Skilled in Diverse Technologies</strong> including ASP.NET (MVC, Web Forms), C#, SQL Server, JavaScript (Vue.js, jQuery), and modern SEO techniques to build robust, real-world business solutions.</li>
+            <li><strong>A Collaborative Team Player</strong> passionate about writing clean, maintainable code and using effective communication to bridge the gap between technical and non-technical stakeholders.</li>
+        </ul>
+    </div>
+  </section>
+
+ <!-- Experience Section -->
+<section class="section" id="experience">
+    <h2>Professional Experience</h2>
+    <div class="experience-timeline">
+        <!-- Zolvat -->
+        <div class="experience-item">
+          <div class="exp-header">
+            <h3><a href="https://zolvat.com" target="_blank" style="color: inherit; text-decoration: none;">Zolvat</a></h3>
+            <span>Apr 2025 - Present • Limassol, Cyprus · Remote</span>
+          </div>
+          <p class="exp-role">Junior QA Manual and Automation</p>
+          <ul class="exp-details">
+            <li>Executed manual test cases and documented results accurately.</li>
+            <li>Collaborated with developers to prepare relevant test scenarios.</li>
+            <li>Assisted in writing automated test scripts for regression features.</li>
+            <li>Reported bugs clearly and validated bug fixes efficiently.</li>
+          </ul>
+          <div class="exp-tags">
+            <span>Manual Testing</span><span>Automation</span><span>QA</span><span>Selenium</span><span>Cypress</span>
+          </div>
+        </div>
+        <div class="experience-item">
+          <div class="exp-header">
+            <h3><a href="https://zolvat.com" target="_blank" style="color: inherit; text-decoration: none;">Zolvat</a></h3>
+            <span>Feb 2025 - Present • Limassol, Cyprus · Remote</span>
+          </div>
+          <p class="exp-role">Sales Executive</p>
+          <ul class="exp-details">
+            <li>Developed and executed sales strategies to meet monthly targets.</li>
+            <li>Built and maintained long-term relationships with clients.</li>
+            <li>Presented product demos and negotiated contracts effectively.</li>
+            <li>Maintained accurate sales records using CRM tools.</li>
+          </ul>
+          <div class="exp-tags">
+            <span>Sales</span><span>CRM</span><span>Client Acquisition</span><span>Lead Generation</span><span>Negotiation</span>
+          </div>
+        </div>
+        <!-- Code5 Technologies -->
+        <div class="experience-item">
+            <div class="exp-header">
+                <h3><a href="https://noonah.com/" target="_blank" style="color: inherit; text-decoration: none;">Code5 Technologies</a></h3>
+                <span>July 2024 - Jan 2025 • Lahore, Pakistan</span>
+            </div>
+            <p class="exp-role">ASP.NET Developer | SEO Specialist</p>
+            <ul class="exp-details">
+                <li>Developed interactive product events for <a href="https://ae.iboothme.com/" target="_blank">iBoothme</a> using technologies like Holobox and AI photo booths.</li>
+                <li>Crafted and implemented a comprehensive SEO strategy for <a href="https://openmarket.pk/" target="_blank">Open Market Pakistan</a>.</li>
+                <li>Performed on-page, off-page, and technical SEO audits to enhance site performance and authority.</li>
+            </ul>
+            <div class="exp-tags">
+                <span>ASP.NET</span><span>Event Tech</span><span>SEO</span><span>Google Analytics</span><span>Ahrefs</span><span>SEMrush</span>
+            </div>
+        </div>
+        <!-- MCode Technologies -->
+        <div class="experience-item">
+            <div class="exp-header">
+                <h3><a href="http://www.mcodetechnologies.com/" target="_blank" style="color: inherit; text-decoration: none;">MCode Technologies</a></h3>
+                <span>July 2021 - July 2024 • Lahore, Pakistan</span>
+            </div>
+            <p class="exp-role">Dotnet Developer</p>
+            <ul class="exp-details">
+                <li>Developed enterprise-grade modules for MCode POS, used widely in restaurants and hotels.</li>
+                <li>Built and maintained secure, scalable modules for <a href="http://www.eimshub.com/" target="_blank">EIMS</a>, an education management system.</li>
+                <li>Key technologies: ASP.NET (Web Forms & MVC), C#, SQL Server, Crystal Reports, and jQuery.</li>
+            </ul>
+            <div class="exp-tags">
+                <span>ASP.NET MVC</span><span>C#</span><span>SQL Server</span><span>Web Forms</span><span>Crystal Reports</span><span>jQuery</span>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Projects Section -->
+<section class="section" id="projects">
+    <h2>Projects Showcase</h2>
+    <div class="projects-grid">
+        <!-- Project: Zolvat -->
+        <div class="project-card">
+            <div class="project-image-placeholder"><img src="Zolvat.png" alt="Screenshot of the Zolvat financial solutions website." /></div>
+            <div class="project-content">
+              <h3>Zolvat Pvt Ltd</h3>
+              <p class="project-company">Fintech Payment Solutions</p>
+              <p class="project-description">Enabled secure payment processing, merchant onboarding, and seamless integration for businesses worldwide.</p>
+              <div class="project-tags"><span>Fintech</span><span>Payment Gateway</span><span>Laravel</span><span>Bootstrap</span></div>
+              <a href="https://zolvat.com/" target="_blank" class="project-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+        <!-- Project: openmarket.pk -->
+        <div class="project-card">
+            <div class="project-image-placeholder"><img src="OpenMarketPakistan.webp" alt="Homepage of Open Market Pakistan website."/></div>
+            <div class="project-content">
+                <h3>Open Market PK</h3>
+                <p class="project-company">Code5 Technologies</p>
+                <p class="project-description">Executed a full-scale SEO strategy to boost organic search rankings and online visibility.</p>
+                <div class="project-tags"><span>SEO</span> <span>Ahrefs</span> <span>SEMrush</span> <span>Analytics</span></div>
+                <a href="https://openmarket.pk/" target="_blank" class="project-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+        <!-- Project: noonah.com -->
+        <div class="project-card">
+            <div class="project-image-placeholder"><img src="noonah.webp" alt="Screenshot of the Noonah interactive event tech website." /></div>
+            <div class="project-content">
+                <h3>Noonah</h3>
+                <p class="project-company">Code5 Technologies</p>
+                <p class="project-description">Contributed to software development for immersive event technology and interactive experiences.</p>
+                <div class="project-tags"><span>Software Dev</span> <span>ASP.NET</span> <span>C#</span></div>
+                <a href="https://noonah.com/" target="_blank" class="project-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+        <!-- Project: ae.iboothme.com -->
+        <div class="project-card">
+            <div class="project-image-placeholder"><img src="iBoothme.webp" alt="Website screenshot for iBoothME, an AI photobooth company." /></div>
+            <div class="project-content">
+                <h3>iBoothME (AE)</h3>
+                <p class="project-company">Code5 Technologies</p>
+                <p class="project-description">Developed backend systems for AI-powered photo booths and interactive event solutions.</p>
+                <div class="project-tags"><span>Software Dev</span> <span>ASP.NET</span> <span>AI</span> <span>Azure</span></div>
+                <a href="https://ae.iboothme.com/" target="_blank" class="project-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+        <!-- Project: EIMS Hub -->
+        <div class="project-card">
+            <div class="project-image-placeholder"><img src="EIMS TMS.png" alt="Screenshot of the EIMS Hub education management portal."/></div>
+            <div class="project-content">
+                <h3>EIMS Hub</h3>
+                <p class="project-company">MCode Technologies</p>
+                <p class="project-description">Lead website development for an Education Institute Management System portal.</p>
+                <div class="project-tags"><span>Web Dev</span> <span>ASP.NET</span> <span>jQuery</span> <span>HTML/CSS</span></div>
+                <a href="http://www.eimshub.com/" target="_blank" class="project-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+        <!-- Project: EIMS PK -->
+        <div class="project-card">
+            <div class="project-image-placeholder"><img src="EIMS.png" alt="Secure login page for the EIMS PK software."/></div>
+            <div class="project-content">
+                <h3>EIMS PK Login</h3>
+                <p class="project-company">MCode Technologies</p>
+                <p class="project-description">Developed secure login and authentication modules for the core EIMS software.</p>
+                <div class="project-tags"><span>Software Dev</span> <span>ASP.NET MVC</span> <span>SQL</span> <span>C#</span></div>
+                <a href="https://www.eimspk.com/Account/Login" target="_blank" class="project-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+        <!-- Project 6: MCode Site -->
+        <div class="project-card">
+            <div class="project-image-placeholder"><img src="MCodeTechnologies.png" alt="Project Image" style="width: 100%; height: 100%; border-radius: 10px;" /></div>
+            <div class="project-content">
+                <h3>MCode Technologies</h3>
+                <p class="project-company">MCode Technologies</p>
+                <p class="project-description">Developed and maintained the official corporate website for MCode Technologies.</p>
+                <div class="project-tags">
+                    <span>Web Dev</span> <span>Bootstrap</span> <span>JS</span> <span>PHP</span>
+                </div>
+                <a href="http://www.mcodetechnologies.com/" target="_blank" class="project-link">Visit Site <i class="fas fa-external-link-alt"></i></a>
+            </div>
+        </div>
+    </div>
+</section>
+
+  <!-- Skills Section -->
+  <section class="section" id="skills">
+    <h2>Core Competencies</h2>
+    <div class="skills-grid">
+        <div class="skill-item"><i class="devicon-csharp-plain"></i><p>C#</p></div>
+        <div class="skill-item"><i class="devicon-dot-net-plain-wordmark"></i><p>ASP.NET</p></div>
+        <div class="skill-item"><i class="devicon-microsoftsqlserver-plain-wordmark"></i><p>SQL Server</p></div>
+        <div class="skill-item"><i class="devicon-mongodb-plain-wordmark"></i><p>MongoDB</p></div>
+        <div class="skill-item"><i class="devicon-vuejs-plain-wordmark"></i><p>Vue.js</p></div>
+        <div class="skill-item"><i class="devicon-javascript-plain"></i><p>JavaScript</p></div>
+        <div class="skill-item"><i class="devicon-html5-plain-wordmark"></i><p>HTML5 & CSS3</p></div>
+        <div class="skill-item"><i class="fas fa-search"></i><p>SEO</p></div>
+        <div class="skill-item"><i class="devicon-git-plain-wordmark"></i><p>Git</p></div>
+        <div class="skill-item"><i class="devicon-python-plain"></i><p>Python</p></div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section class="section" id="contact">
+    <h2>Get In Touch</h2>
+    <div class="contact-box">
+        <p>I'm currently available for freelance work and new opportunities. If you have a project in mind or just want to connect, feel free to reach out!</p>
+        <div class="contact-info">
+            <p><i class="fas fa-envelope" style="color:var(--primary-color); margin-right: 10px;"></i><a href="mailto:owaiskhan7388871@gmail.com" style="color: inherit; text-decoration:none;">owaiskhan7388871@gmail.com</a></p>
+            <p style="margin-top: 10px;"><i class="fas fa-phone" style="color:var(--primary-color); margin-right: 10px;"></i>+92 305 7388871</p>
+        </div>
+    </div>
+  </section>
+
+  <!-- Scroll Top Button -->
+  <a id="scrollTopBtn" class="scroll-top"><i class="fas fa-arrow-up"></i></a>
+  
+  <!-- Scripts -->
+  <script>
+    // Mobile Nav (Hamburger Menu)
+    const navSlide = () => {
+        const hamburger = document.querySelector('.hamburger');
+        const nav = document.querySelector('.nav-links');
+        const navLinks = document.querySelectorAll('.nav-links li');
+
+        hamburger.addEventListener('click', () => {
+            nav.classList.toggle('nav-active');
+            hamburger.classList.toggle('toggle');
+        });
+        
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                if (nav.classList.contains('nav-active')) {
+                    nav.classList.remove('nav-active');
+                    hamburger.classList.remove('toggle');
+                }
+            });
+        });
+    }
+    navSlide();
+      
+    // Typewriter Effect
+    const texts = ["Full-Stack Developer", "QA & Automation Engineer", ".NET Architecture Expert", "SEO & Digital Strategist", "Clean Code Advocate"];
+    let textIndex = 0; let charIndex = 0;
+    const typewriter = document.getElementById("typewriter");
+    function type() { if (!typewriter) return; if (charIndex < texts[textIndex].length) { typewriter.innerHTML += texts[textIndex].charAt(charIndex); charIndex++; setTimeout(type, 70); } else { setTimeout(erase, 2000); } }
+    function erase() { if (charIndex > 0) { typewriter.innerHTML = texts[textIndex].substring(0, charIndex - 1); charIndex--; setTimeout(erase, 35); } else { textIndex = (textIndex + 1) % texts.length; setTimeout(type, 500); } }
+    document.addEventListener("DOMContentLoaded", () => { if (texts.length > 0) setTimeout(type, 500); });
+
+    // Theme Toggle with Local Storage
+    const body = document.body;
+    const themeToggleBtn = document.getElementById('theme-toggle-icon');
+    
+    function toggleTheme() {
+      body.classList.toggle("light-mode");
+      if (body.classList.contains("light-mode")) {
+          themeToggleBtn.className = "fas fa-sun";
+          localStorage.setItem('theme', 'light-mode');
+      } else {
+          themeToggleBtn.className = "fas fa-moon";
+          localStorage.setItem('theme', 'dark-mode');
+      }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        if (localStorage.getItem('theme') === 'light-mode') {
+            body.classList.add('light-mode');
+            themeToggleBtn.className = 'fas fa-sun';
+        }
+    });
+    
+    // Scroll Top Button
+    const scrollTopBtn = document.getElementById("scrollTopBtn");
+    window.onscroll = () => { if(scrollTopBtn) { scrollTopBtn.style.display = window.scrollY > 300 ? "flex" : "none"; } };
+    if(scrollTopBtn) { scrollTopBtn.onclick = () => window.scrollTo({ top: 0, behavior: "smooth" }); }
+  </script>
+</body>
+</html>
