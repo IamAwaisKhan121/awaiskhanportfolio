@@ -109,6 +109,22 @@
       background-clip: text;
       text-decoration: none;
       transition: transform 0.3s ease;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .nav-brand img {
+      width: 40px;
+      height: 40px;
+      border-radius: 50%;
+      border: 2px solid transparent;
+      background: var(--gradient-3);
+      padding: 2px;
+      transition: all 0.3s ease;
+    }
+    .nav-brand:hover img {
+      transform: rotate(360deg) scale(1.1);
+      box-shadow: 0 0 15px rgba(0, 212, 255, 0.6);
     }
     .nav-brand:hover { transform: scale(1.05); }
     .nav-links { list-style: none; display: flex; gap: 35px; align-items: center; }
@@ -374,6 +390,101 @@
     body.light-mode .exp-tags span, body.light-mode .project-tags span { 
       background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(0, 212, 255, 0.1));
       border: 1px solid rgba(102, 126, 234, 0.3);
+    }
+
+    /* Education */
+    .education-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 30px;
+      margin-top: 50px;
+    }
+    .education-card {
+      background: rgba(26, 31, 58, 0.6);
+      backdrop-filter: blur(10px);
+      border-radius: 20px;
+      border: 1px solid rgba(0, 212, 255, 0.1);
+      padding: 30px;
+      transition: all 0.4s ease;
+      position: relative;
+      overflow: hidden;
+    }
+    .education-card::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 4px;
+      height: 100%;
+      background: var(--gradient-3);
+      transform: scaleY(0);
+      transition: transform 0.3s ease;
+    }
+    .education-card:hover::before {
+      transform: scaleY(1);
+    }
+    .education-card:hover {
+      transform: translateY(-5px);
+      border-color: rgba(0, 212, 255, 0.3);
+      box-shadow: 0 12px 40px rgba(0, 212, 255, 0.2);
+    }
+    body.light-mode .education-card {
+      background: rgba(255, 255, 255, 0.9);
+      border: 1px solid rgba(102, 126, 234, 0.2);
+    }
+    body.light-mode .education-card:hover {
+      border-color: rgba(102, 126, 234, 0.4);
+      box-shadow: 0 12px 40px rgba(102, 126, 234, 0.15);
+    }
+    .education-year {
+      display: inline-block;
+      padding: 6px 16px;
+      background: var(--gradient-3);
+      color: #fff;
+      border-radius: 20px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      margin-bottom: 15px;
+    }
+    .education-card h3 {
+      font-size: 1.3rem;
+      margin-bottom: 8px;
+      background: var(--gradient-3);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    body.light-mode .education-card h3 {
+      background: var(--gradient-1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      background-clip: text;
+    }
+    .education-card h4 {
+      font-size: 1.1rem;
+      color: #aaa;
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+    body.light-mode .education-card h4 {
+      color: #666;
+    }
+    .education-card p {
+      font-size: 0.95rem;
+      color: #b0b0b0;
+      line-height: 1.6;
+      margin-bottom: 8px;
+    }
+    body.light-mode .education-card p {
+      color: #777;
+    }
+    .education-card .institution {
+      font-size: 1rem;
+      color: var(--text-color);
+      margin-bottom: 12px;
+    }
+    body.light-mode .education-card .institution {
+      color: var(--light-text);
     }
 
     /* Projects */
@@ -738,6 +849,7 @@
         .nav-active li:nth-child(4) { transition-delay: 0.4s; }
         .nav-active li:nth-child(5) { transition-delay: 0.5s; }
         .nav-active li:nth-child(6) { transition-delay: 0.6s; }
+        .nav-active li:nth-child(7) { transition-delay: 0.7s; }
 
         .toggle .line1 { transform: rotate(-45deg) translate(-5px, 6px); }
         .toggle .line2 { opacity: 0; }
@@ -782,11 +894,15 @@
 <body>
   <!-- Navbar -->
   <nav>
-    <a href="#home" class="nav-brand">Awais Khan</a>
+    <a href="#home" class="nav-brand">
+      <img src="favicon.png" alt="Awais Khan Logo" />
+      <!-- <span>Awais Khan</span> -->
+    </a>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
       <li><a href="#experience">Experience</a></li>
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#education">Education</a></li>
       <li><a href="#skills">Skills</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><button onclick="toggleTheme()" aria-label="Toggle Theme"><i id="theme-toggle-icon" class="fas fa-moon"></i></button></li>
@@ -826,9 +942,11 @@
     <div class="about-card">
         <ul>
             <li><strong>Full-Stack Development:</strong> Expertise in ASP.NET (Core & Framework), C#, Entity Framework, MVC, ADO.NET, Web Forms, AngularJS, JavaScript, jQuery, HTML/CSS, SQL Server, MongoDB</li>
-            <li><strong>Tools & Technologies:</strong> Visual Studio, Git, Postman, Crystal Reports, IIS, Google Analytics, Search Console, Ahrefs, SEMrush, Screaming Frog</li>
+            <li><strong>QA & Testing Expertise:</strong> Comprehensive experience in Manual Testing, Automation Testing (Cypress, Selenium), Regression Testing, Smoke Testing, Cross-Browser Testing, UI/UX Verification, Bug Tracking & Documentation, and Exploratory Testing. Skilled in end-to-end functional testing, test case documentation, and QA process optimization</li>
+            <li><strong>DevOps & Deployment:</strong> Proficient in deployment strategies, continuous integration, and collaborating with development teams for seamless releases. Experience with Git workflows, bug triaging sessions, and daily standups</li>
+            <li><strong>Tools & Technologies:</strong> Visual Studio, Git, Postman, Crystal Reports, IIS, Cypress, Selenium, Linear, Google Analytics, Search Console, Ahrefs, SEMrush, Screaming Frog</li>
             <li><strong>SEO & Digital Strategy:</strong> Expertise in on-page, off-page, and technical SEO. Proven success driving traffic and engagement on e-commerce platforms like Open Market Pakistan</li>
-            <li><strong>Mindset & Values:</strong> Innovative Thinker eager to adopt new technologies • Team-Oriented with clear communication • Result-Driven focused on delivering solutions that exceed expectations</li>
+            <li><strong>Mindset & Values:</strong> Innovative Thinker eager to adopt new technologies • Team-Oriented with clear communication • Result-Driven focused on delivering solutions that exceed expectations • Quality-focused with attention to detail in testing and development</li>
             <li><strong>Languages:</strong> English, Urdu, Pashto, Punjabi</li>
         </ul>
     </div>
@@ -1015,6 +1133,50 @@
     </div>
 </section>
 
+  <!-- Education Section -->
+  <section class="section" id="education">
+    <h2>Education & Qualifications</h2>
+    <div class="education-grid">
+        <!-- M-Phil -->
+        <div class="education-card">
+            <span class="education-year">2021-2023</span>
+            <h3>Master of Science in Computer Science</h3>
+            <h4>M-Phil (MS-CS)</h4>
+            <p class="institution">Lahore Garrison University</p>
+            <p><strong>Specialization:</strong> Advanced Computer Networks, Advanced Computer Architecture, Advanced Database Management System</p>
+            <p><strong>CGPA:</strong> 2.92/4.0</p>
+            <!-- <p><strong>Status:</strong> Completed</p> -->
+        </div>
+        <!-- Bachelor's -->
+        <div class="education-card">
+            <span class="education-year">2017-2021</span>
+            <h3>Bachelor of Science in Computer Science</h3>
+            <h4>BCS/BS</h4>
+            <p class="institution">Lahore Garrison University</p>
+            <p><strong>Key Courses:</strong> Object Oriented Programming, Programming Fundamentals, Discrete Structure</p>
+            <p><strong>CGPA:</strong> 3.0/4.0</p>
+        </div>
+        <!-- Intermediate -->
+        <div class="education-card">
+            <span class="education-year">2015-2017</span>
+            <h3>Higher Secondary School Certificate</h3>
+            <h4>Intermediate/A-Level (HSSC)</h4>
+            <p class="institution">Army Public Schools & Colleges System, Okara Cantt</p>
+            <p><strong>Subjects:</strong> Computer, Mathematics, Physics</p>
+            <p><strong>Percentage:</strong> 73%</p>
+        </div>
+        <!-- Matriculation -->
+        <div class="education-card">
+            <span class="education-year">2013-2015</span>
+            <h3>Secondary School Certificate</h3>
+            <h4>Matriculation/O-Level (SSC)</h4>
+            <p class="institution">F.G Boys High School, Okara Cantt</p>
+            <p><strong>Subjects:</strong> Computer, Chemistry, Mathematics</p>
+            <p><strong>Percentage:</strong> 70%</p>
+        </div>
+    </div>
+  </section>
+
   <!-- Skills Section -->
   <section class="section" id="skills">
     <h2>Core Competencies</h2>
@@ -1172,7 +1334,7 @@
 
     // Observe all cards and sections
     document.addEventListener('DOMContentLoaded', () => {
-      const animatedElements = document.querySelectorAll('.about-card, .project-card, .skill-item, .contact-box');
+      const animatedElements = document.querySelectorAll('.about-card, .project-card, .education-card, .skill-item, .contact-box');
       animatedElements.forEach(el => {
         el.style.opacity = '0';
         el.style.transform = 'translateY(30px)';
